@@ -25,13 +25,12 @@ jobs:
         run: |
           pnpm install --frozen-lockfile
           pnpm build
-	  mkdir static
-
-	  mv dist/ static/
-	  cd service
-	  pnpm install --frozen-lockfile
+					mkdir static
+					mv dist/ static/
+					cd service
+					pnpm install --frozen-lockfile
           pnpm build
-	  mv build/ ../static/
+					mv build/ ../static/
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
