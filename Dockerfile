@@ -5,7 +5,10 @@ ARG REPO_BRANCH="develop"
 ARG REPO_STATIC_BRANCH=${REPO_BRANCH}-static
 ARG REPO_URL=https://github.com/${REPO_MAINTAINER}/chatgpt-web.git
 
-RUN npm install pnpm -g
+RUN apk update -f \
+		&& apk upgrade \
+		&& apk --no-cache add -f git \
+		&& npm install pnpm -g
 
 WORKDIR /app
 
