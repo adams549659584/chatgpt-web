@@ -42,8 +42,7 @@ jobs:
 
   build_docker:
     name: Build docker
-
-		needs: build-static
+    needs: build-static
 
     runs-on: ubuntu-latest
     steps:
