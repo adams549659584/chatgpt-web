@@ -25,8 +25,8 @@ jobs:
         run: |
           pnpm install --frozen-lockfile
           pnpm build
-          mkdir static
-          mv dist/ static/
+          mkdir static/public
+          mv dist/* static/public
           cd service
           pnpm install --frozen-lockfile
           pnpm build
