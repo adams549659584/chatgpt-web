@@ -7,8 +7,44 @@ on:
     types: [created] # 表示在创建新的 Release 时触发
 
 jobs:
+  build-static:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      - uses: actions/setup-node@v3
+        with:
+          cache: 'pnpm'
+
+      - name: Build front and back
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm build
+					mkdir static
+					mv dist/ static/
+					cd service
+					pnpm install --frozen-lockfile
+          pnpm build
+					mv build/ ../static/
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.GHP_TOKEN }}
+          publish_dir: ./static # 静态文件所在的目录
+          publish_branch: ${{ github.ref_name }}-static # 部署到的分支
+          force_orphan: true # 如果发布分支不存在，创建一个新的分支
+
   build_docker:
     name: Build docker
+
+		needs: build-static
+
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
