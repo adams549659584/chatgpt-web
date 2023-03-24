@@ -15,7 +15,7 @@ export interface UserState {
 export function defaultSetting(): UserState {
   return {
     userInfo: {
-      avatar: 'https://gd-hbimg.huaban.com/6a75f7fdd49ce7b7711afdbdf3c5f22773d7c24013cff-CVmbhn_fw658webp',
+      avatar: 'https://vcanbb.eu.org/img/logo.png',
       name: 'ChatGPT',
       description: 'OpenAI',
     },
