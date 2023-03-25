@@ -15,7 +15,7 @@ export interface UserState {
 export function defaultSetting(): UserState {
   return {
     userInfo: {
-      avatar: 'https://vcanbb.eu.org/img/logo.png',
+      avatar: 'https://www.vcanbb.top/img/logo.png',
       name: 'ChatGPT',
       description: 'OpenAI',
     },
